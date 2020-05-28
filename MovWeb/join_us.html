@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<link rel="Icon" href="images/tab_icon.png" type="images/png" sizes="128x128">
+	<title>MovWeb</title>
+	<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onload="myFunction()">
+	
+	<header>
+		<nav>
+			<div class="main clearfix">
+				<a href="index.html">
+					<img src="images/head_logo.png" alt="MovWeb" class="logo"></a>			
+			</div>				
+		</nav>
+	</header>
+
+	<script>
+        function getParams()
+        {
+            var idx = document.URL.indexOf('?');
+            var params = new Array();
+            if (idx != -1) {
+                var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+                for (var i=0; i<pairs.length; i++){
+                    nameVal = pairs[i].split('=');
+                    params[nameVal[0]] = nameVal[1];
+                }
+            }
+            return params;
+        }
+        params = getParams();
+
+        name = unescape(params["name"]);
+        key = unescape(params["key"]);
+
+        function myFunction() {
+		  document.getElementById("stream_id").value = key;
+		  document.getElementById("stream_name").value = name;
+		}
+    </script>
+
+	<div class="site_logo" style="margin-top: 40px;" align="center">
+		<img src="images/site_name_logo.png" alt="MovWeb">
+	</div>
+
+	<div align="center" style="margin-top: 50px;">
+		<form action="live_stream.html" method="get" class="sign_up_form">
+			<input type="email" class="input-box" placeholder="Your Email" required>
+			<br>			
+			<input type="password" class="input-box" placeholder="Password" required pattern="\S+">
+
+			<p>I agree to the Terms of Services</p>
+			<button type="submit">Sign Up</button>
+	        <input id="stream_id" type="hidden" name="key" value="">
+	        <input id="stream_name" type="hidden" name="name" value="">
+		</form>
+	</div>
+
+</body>
+</html>
